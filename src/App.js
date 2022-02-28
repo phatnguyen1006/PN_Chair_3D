@@ -145,7 +145,7 @@ export default function App() {
           </Suspense>
         </Canvas>
       </div>
-      {/* <Loader /> */}
+      <Loader />
       <div
         className="scroll-area"
         ref={scrollArea}
