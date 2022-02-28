@@ -76,14 +76,15 @@ const HTMLContent = ({
           <Model url={modelPath} />
         </mesh>
         <Html fullscreen portal={domContent}>
-          <div
-            onClick={() => {
-              setHover(true);
-            }}
-            ref={refItem}
-            className="container"
-          >
-            <h1 className="title">{children}</h1>
+          <div ref={refItem} className="container">
+            <h1
+              onMouseEnter={() => {
+                setHover(true);
+              }}
+              className="title"
+            >
+              {children}
+            </h1>
           </div>
         </Html>
       </group>
