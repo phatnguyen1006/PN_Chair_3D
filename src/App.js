@@ -52,11 +52,17 @@ const HTMLContent = ({
   bgColor,
   position
 }) => {
+  const [hover, setHover] = useState();
   const ref = useRef();
   useFrame(() => (ref.current.rotation.y += 0.01));
   // observer
   const [refItem, inView] = useInView({
     threshold: 0 // no margin
+  });
+  useFrame(() => {
+    hover && (ref.current.rotation.y += 50);
+
+    setTimeout(() => hover && setHover(false), 800);
   });
 
   useEffect(() => {
@@ -70,7 +76,13 @@ const HTMLContent = ({
           <Model url={modelPath} />
         </mesh>
         <Html fullscreen portal={domContent}>
-          <div ref={refItem} className="container">
+          <div
+            onClick={() => {
+              setHover(true);
+            }}
+            ref={refItem}
+            className="container"
+          >
             <h1 className="title">{children}</h1>
           </div>
         </Html>
@@ -145,7 +157,7 @@ export default function App() {
           </Suspense>
         </Canvas>
       </div>
-      <Loader />
+      {/* <Loader /> */}
       <div
         className="scroll-area"
         ref={scrollArea}
